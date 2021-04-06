@@ -30,7 +30,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
+
       - name: Azure Login
         uses: Azure/login@v1
         with:
@@ -38,5 +38,4 @@ jobs:
           creds: ${{secrets.AZURE_CREDS}}
           # Set this value to true to enable Azure PowerShell Login in addition to Az CLI login
           enable-AzPSSession: true
-          
-    allow-no-subscriptions: # optional
+
