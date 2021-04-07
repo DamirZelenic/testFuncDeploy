@@ -69,7 +69,7 @@ jobs:
           publish-profile: ${{ steps.publishprofile.outputs.profile }}
 
         # Reset the publish profile
-      - name: Azure App Service Publish Profile
+      - name: Azure App Service Reset Profile
         uses: aliencube/publish-profile-actions@v1.2.0
         with:
           # Resource group name.
