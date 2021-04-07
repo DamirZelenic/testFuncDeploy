@@ -48,14 +48,14 @@ jobs:
           azPSVersion: latest
 
       # Get the publish profile
-      - name: Azure App Service Publish Profile
-        uses: aliencube/publish-profile-actions@v1.2.0
-        id: publishprofile
-        with:
+      #- name: Azure App Service Publish Profile
+        #uses: aliencube/publish-profile-actions@v1.2.0
+        #id: publishprofile
+        #with:
           # Resource group name.
-          resourceGroupName: ${{ env.RESOURCE_GROUP }}
+          #resourceGroupName: ${{ env.RESOURCE_GROUP }}
           # App instance name.
-          appName: ${{ env.FUNCTION_NAME }}
+          #appName: ${{ env.FUNCTION_NAME }}
 
       # Deploy the Code
       - name: Azure Functions Action
@@ -69,12 +69,12 @@ jobs:
           publish-profile: ${{ steps.publishprofile.outputs.profile }}
 
         # Reset the publish profile
-      - name: Azure App Service Reset Profile
-        uses: aliencube/publish-profile-actions@v1.2.0
-        with:
+      #- name: Azure App Service Reset Profile
+        #uses: aliencube/publish-profile-actions@v1.2.0
+        #with:
           # Resource group name.
-          resourceGroupName: ${{ env.RESOURCE_GROUP }}
+          #resourceGroupName: ${{ env.RESOURCE_GROUP }}
           # App instance name.
-          appName: ${{ env.FUNCTION_NAME }}
+          #appName: ${{ env.FUNCTION_NAME }}
           # Value indicating whether to reset the publish profile or not.
-          reset: true
+          #reset: true
