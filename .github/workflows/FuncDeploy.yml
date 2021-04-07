@@ -81,4 +81,4 @@ jobs:
           # App instance name.
           appName: ${{ env.FUNCTION_NAME }}
           # Value indicating whether to reset the publish profile or not.
-          #reset: true
+          reset: true
