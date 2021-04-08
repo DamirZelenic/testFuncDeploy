@@ -16,7 +16,7 @@ env:
   SCRIPT_PATH: './dumyFunc'      # set this to the path where your PowerShell code is stored.
   RESOURCE_GROUP: dumyFunc
   LOCATION: 'westeurope'
-  APP_SETTING: '{"FIRST_SETTING":"value1"}'
+  APP_SETTING: '{"FIRST_SETTING":"value1","SECOND_SETTING:"value2"}'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -39,20 +39,13 @@ jobs:
           creds: ${{secrets.AZURE_CREDS}}
           enable-AzPSSession: true
 
-      - name: Azure PowerShell Action Test
-        uses: Azure/powershell@v1
-        with:
-          inlineScript: |
-            Write-Host "'${{ env.APP_SETTING }}' | jq "
-          azPSVersion: latest
-
       # Deploy the Function
       - name: Azure PowerShell Action
         uses: Azure/powershell@v1
         with:
           # Specify the Az PowerShell script here.
           inlineScript:
-            .\deployFA.ps1 -FunctionName ${{ env.FUNCTION_NAME }} -FunctionResourceGroup ${{ env.RESOURCE_GROUP }} -Location ${{ env.LOCATION }} -AppSettingsJSON "'${{ env.APP_SETTING }}' | jq "
+            .\deployFA.ps1 -FunctionName ${{ env.FUNCTION_NAME }} -FunctionResourceGroup ${{ env.RESOURCE_GROUP }} -Location ${{ env.LOCATION }} -AppSettingsJSON "'${{ env.APP_SETTING }}'"
           # Azure PS version to be used to execute the script, example: 1.8.0, 2.8.0, 3.4.0. To use the latest version, specify "latest".
           azPSVersion: latest
 
