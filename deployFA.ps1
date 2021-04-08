@@ -7,7 +7,7 @@ param(
     [parameter()]
     [string]$Location,
     [parameter()]
-    $AppSettingsJSON
+    [string]$AppSettingsJSON
 )
 
 Write-Host "App Settings pre $($AppSettingsJSON)"
