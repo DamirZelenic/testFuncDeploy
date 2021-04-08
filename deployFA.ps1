@@ -10,6 +10,7 @@ param(
     $AppSettingsJSON
 )
 
+Write-Host "App Settings $($AppSettingsJSON)"
 $Function = Get-AzFunctionApp -Name $FunctionName -ResourceGroupName $FunctionResourceGroup
 if ($Function)
 {
