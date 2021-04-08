@@ -10,6 +10,7 @@ param(
     [string]$AppSettingsJSON
 )
 
+Write-Host "$($AppSettingsJSON.GetType().FullName)"
 Write-Host "App Settings pre $($AppSettingsJSON)"
 $AppSettingsJSON = $AppSettingsJSON.Replace("***","")
 $AppSettingsJSON = "{$($AppSettingsJSON)}"
