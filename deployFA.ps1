@@ -57,6 +57,7 @@ else
             Runtime            = "PowerShell"
             IdentityType       = "SystemAssigned"
             AppSettings        = $appSettings
+        }
     }
     $Function = New-AzFunctionApp @FAParameters
 }
