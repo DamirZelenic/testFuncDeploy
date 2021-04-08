@@ -6,6 +6,7 @@ param(
     [string]$FunctionResourceGroup,
     [parameter()]
     [string]$Location,
+    [parameter()]
     [string]$AppSettingsJSON
 )
 
@@ -23,7 +24,7 @@ else
         New-AzResourceGroup -Name $FunctionResourceGroup -Location $Location
     }
     $StorageAccountName = "sa$FunctionName".ToLower()
-    if ($null -eq (Get-AzStorageAccount | Where-Object { $_.Name -eq $StorageAccountName } ))
+    if ($null -eq (Get-AzStorageAccount -Name $StorageAccountName -ResourceGroupName $FunctionResourceGroup))
     {
         Write-Host "Storageaccount does not exist yet, creating"
         $SAParameters = @{
@@ -36,7 +37,7 @@ else
     }
     $appSettings = $appSettingsJSON | ConvertFrom-Json -AsHashtable
 
-    if (!$appSettings -or $AppSettings -eq "")
+    if (!$appSettings -or $appSettings -eq "")
     {
         $FAParameters = @{
             Name               = $FunctionName
@@ -56,7 +57,7 @@ else
             Location           = $location
             Runtime            = "PowerShell"
             IdentityType       = "SystemAssigned"
-            AppSettings        = $appSettings
+            AppSetting        = $appSettings
         }
     }
     $Function = New-AzFunctionApp @FAParameters
