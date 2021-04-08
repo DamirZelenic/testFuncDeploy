@@ -91,3 +91,5 @@ jobs:
     steps:
         - name: trigger
           run: echo "Hello from non main!"
+        - name: "Echo"
+          run: "echo '${{ github.event.pull_request.base.ref }}'"
