@@ -18,7 +18,7 @@ env:
   SCRIPT_PATH: './dumyFunc'      # set this to the path where your PowerShell code is stored.
   RESOURCE_GROUP: dumyFunc
   LOCATION: 'westeurope'
-  APP_SETTINGS: '\{"FIRST_SETING":"value1","SECOND_SETTING":"value2"\}'
+  FIRST_SETTING: 'value1'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -33,7 +33,23 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: "Echo"
-        run: echo ${{ env.APP_SETTINGS }}
+        run: echo ${{ env.FIRST_SETTING }}
+
+      - name: Json
+        uses: schdck/create-env-json@v1
+        id: create-env
+        with:
+          file-name: 'env.json'
+          first_setting: ${{ env.FIRST_SETTING }}
+
+      - name: Read env.json
+        id: package
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ${{ steps.create-env.outputs.full-path }}
+
+      - name: Echo package.json
+        run: echo ${{ steps.package.outputs.content }}
 
       - name: Login via Az module
         uses: azure/login@v1
