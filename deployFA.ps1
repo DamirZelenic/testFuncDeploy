@@ -11,6 +11,9 @@ param(
 )
 
 Write-Host "App Settings $($AppSettingsJSON)"
+$appSettingsJSON = $appSettingsJSON.Replace("***","")
+$appSettingsJSON = "{$($appSettingsJSON)}"
+
 $Function = Get-AzFunctionApp -Name $FunctionName -ResourceGroupName $FunctionResourceGroup
 if ($Function)
 {
