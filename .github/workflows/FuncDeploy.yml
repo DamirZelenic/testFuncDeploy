@@ -31,7 +31,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: "Echo"
-        run: "echo '${{ env.APP_SETTING }}' | jq "
+        run: "echo '${{ env.APP_SETTING }}'"
 
       - name: Login via Az module
         uses: azure/login@v1
@@ -45,7 +45,7 @@ jobs:
         with:
           # Specify the Az PowerShell script here.
           inlineScript:
-            .\deployFA.ps1 -FunctionName ${{ env.FUNCTION_NAME }} -FunctionResourceGroup ${{ env.RESOURCE_GROUP }} -Location ${{ env.LOCATION }} -AppSettingsJSON "'${{ env.APP_SETTING }}'"
+            .\deployFA.ps1 -FunctionName ${{ env.FUNCTION_NAME }} -FunctionResourceGroup ${{ env.RESOURCE_GROUP }} -Location ${{ env.LOCATION }} -AppSettingsJSON '${{ env.APP_SETTING }}'
           # Azure PS version to be used to execute the script, example: 1.8.0, 2.8.0, 3.4.0. To use the latest version, specify "latest".
           azPSVersion: latest
 
