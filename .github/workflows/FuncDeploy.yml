@@ -89,7 +89,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.base.ref != 'master' # check the target branch if it's main
     steps:
-        - name: trigger
-          run: echo "Hello from non main!"
-        - name: "Echo"
-          run: "echo ${{ github.event.pull_request.base.ref }}"
+    - name: Dump GitHub context
+      env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
