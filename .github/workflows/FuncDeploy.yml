@@ -18,7 +18,7 @@ env:
   SCRIPT_PATH: './dumyFunc'      # set this to the path where your PowerShell code is stored.
   RESOURCE_GROUP: dumyFunc
   LOCATION: 'westeurope'
-  APP_SETTINGS: '{"FIRST_SETING":"value1","SECOND_SETTING":"value2"}'
+  APP_SETTINGS: '{\"FIRST_SETING\":\"value1\",\"SECOND_SETTING\":\"value2\"}'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
