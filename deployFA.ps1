@@ -7,7 +7,7 @@ param(
     [parameter()]
     [string]$Location,
     [parameter()]
-    [string]$AppSettingsJSON
+    $AppSettingsJSON
 )
 
 $Function = Get-AzFunctionApp -Name $FunctionName -ResourceGroupName $FunctionResourceGroup
