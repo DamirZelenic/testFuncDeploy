@@ -10,9 +10,10 @@ param(
     $AppSettingsJSON
 )
 
-Write-Host "App Settings $($AppSettingsJSON)"
-$appSettingsJSON = $appSettingsJSON.Replace("***","")
-$appSettingsJSON = "{$($appSettingsJSON)}"
+Write-Host "App Settings pre $($AppSettingsJSON)"
+$AppSettingsJSON = $AppSettingsJSON.Replace("***","")
+$AppSettingsJSON = "{$($AppSettingsJSON)}"
+Write-Host "App Settings post $($AppSettingsJSON)"
 
 $Function = Get-AzFunctionApp -Name $FunctionName -ResourceGroupName $FunctionResourceGroup
 if ($Function)
@@ -39,7 +40,8 @@ else
         }
         New-AzStorageAccount @SAParameters
     }
-    $appSettings = $appSettingsJSON | ConvertFrom-Json -AsHashtable
+    $appSettings = $AppSettingsJSON | ConvertFrom-Json -AsHashtable
+    Write-Host "App Settings post $($appSettings)"
 
     if (!$appSettings -or $appSettings -eq "")
     {
