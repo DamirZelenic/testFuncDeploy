@@ -34,6 +34,12 @@ else
     $StorageAccountName = "sa$FunctionName".ToLower()
     if ($null -eq (Get-AzStorageAccount -Name $StorageAccountName -ResourceGroupName $FunctionResourceGroup -ErrorAction SilentlyContinue))
     {
+        while(-not(Get-AzStorageAccountNameAvailability -Name $StorageAccountName).NameAvailable)
+        {
+            $i++
+            $StorageAccountName = "$($StorageAccountName)$i"
+
+        }
         Write-Host "Storageaccount does not exist yet, creating"
         $SAParameters = @{
             Name              = $StorageAccountName
