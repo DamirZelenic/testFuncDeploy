@@ -27,7 +27,7 @@ jobs:
     steps:
       - id: get_environment
         run: |
-          if [[ github.ref == 'refs/heads/main' ]]
+          if [[ github.ref = 'refs/heads/main' ]]
           then
             echo "::set-output name=environment_name::main"
           else
