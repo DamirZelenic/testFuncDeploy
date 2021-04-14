@@ -45,8 +45,14 @@ jobs:
 
       - uses: actions/checkout@v2
 
-      - name: Echo
-        run: "echo '${{ github.ref }}'"
+      - name: Set env
+        if: ${{ github.ref != 'refs/heads/master' }}
+        run: |
+          echo "FUNCTION_NAME=${{ env.FUNCTION_NAME }}dev" >> $GITHUB_ENV
+
+
+      - name: Show name
+        run: echo $FUNCTION_NAME
 
       - name: Login via Az module
         uses: azure/login@v1

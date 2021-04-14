@@ -32,7 +32,16 @@ else
         New-AzResourceGroup -Name $FunctionResourceGroup -Location $Location
     }
     $StorageAccountName = "sa$FunctionName".ToLower()
-    if ($null -eq (Get-AzStorageAccount -Name $StorageAccountName -ResourceGroupName $FunctionResourceGroup -ErrorAction SilentlyContinue))
+    try
+    {
+        $sa = Get-AzStorageAccount -Name $StorageAccountName -ResourceGroupName $FunctionResourceGroup -ErrorAction stop
+    }
+    catch
+    {
+        Write-Host "error: $_"
+    }
+
+    if ($null -eq $sa)
     {
         while(-not(Get-AzStorageAccountNameAvailability -Name $StorageAccountName).NameAvailable)
         {
