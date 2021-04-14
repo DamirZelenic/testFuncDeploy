@@ -23,20 +23,32 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/main' }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: "Echo"
+      - name: Echo
+        if: ${{ github.ref == 'refs/heads/main' }}
         run: "echo '${{ github.ref }}'"
 
-      - name: Login via Az module
+      - name: Echo
+        if: ${{ github.ref != 'refs/heads/main' }}
+        run: "echo '${{ github.ref }}'"
+
+      - name: Login via Az module for prod
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: azure/login@v1
         with:
           creds: ${{secrets.AZURE_CREDS}}
+          enable-AzPSSession: true
+
+      - name: Login via Az module for dev
+        if: ${{ github.ref != 'refs/heads/main' }}
+        uses: azure/login@v1
+        with:
+          creds: ${{secrets.AZURE_CREDS_DEV}}
           enable-AzPSSession: true
 
       # Deploy the Function
@@ -84,16 +96,3 @@ jobs:
           appName: ${{ env.FUNCTION_NAME }}
           # Value indicating whether to reset the publish profile or not.
           reset: true
-
-  differentBranch:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    if: ${{ github.ref != 'refs/heads/main' }}
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      - name: "Echo"
-        run: "echo '${{ github.ref }}'"
