@@ -48,7 +48,7 @@ jobs:
       - name: Set env
         if: ${{ github.ref != 'refs/heads/master' }}
         run: |
-          echo "FUNCTION_NAME=${{ env.FUNCTION_NAME }}-dev" >> $GITHUB_ENV
+          echo "FUNCTION_NAME=${{ env.FUNCTION_NAME }}dev" >> $GITHUB_ENV
 
 
       - name: Show name
