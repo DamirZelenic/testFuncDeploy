@@ -54,6 +54,10 @@ jobs:
           creds: ${{secrets.AZURE_CREDS}}
           enable-AzPSSession: true
 
+      - name: Set env
+        if: github.event.pull_request.base.ref != 'main'
+        run: echo ::set-env name=FUNCTION_NAME::${{ env.FUNCTION_NAME }}-dev
+
       # Deploy the Function
       - name: Azure PowerShell Action
         uses: Azure/powershell@v1
