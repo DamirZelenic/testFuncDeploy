@@ -2,25 +2,25 @@ name: Test Function Deployment
 
 # Controls when the action will run.
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
+  # Triggers the workflow on push or pull request events
   push:
-    branches: [ main ]
+    #branches: [ main ]
     paths:
       - 'dumyFunc/**'
       - '.github/workflows/FuncDeploy.yml'
 
   pull_request:
-    branches: [ main ]
+    #branches: [ main ]
     paths:
       - 'dumyFunc/**'
       - '.github/workflows/FuncDeploy.yml'
 
   # Allows you to run this workflow manually from the Actions tab
-  # workflow_dispatch:
+  workflow_dispatch:
 
 env:
   FUNCTION_NAME: dumyFuncDZ    # This name needs to be globally unique
-  SCRIPT_PATH: './dumyFunc'      # set this to the path where your PowerShell code is stored.
+  FUNC_PATH: './dumyFunc'      # set this to the path where your function code is stored.
   RESOURCE_GROUP: dumyFunc
   LOCATION: 'westeurope'
   APP_SETTING: '{"FIRST_SETTING":"value1","SECOND_SETTING":"value2"}'  # function app settings in json format
@@ -96,7 +96,7 @@ jobs:
           # Name of the Azure Function App
           app-name: ${{ env.FUNCTION_NAME }}
           # Path to package or folder. *.zip or a folder to deploy
-          package: ${{ env.SCRIPT_PATH }}
+          package: ${{ env.FUNC_PATH }}
           # Publish profile (*.publishsettings) file contents with web deploy secrets
           publish-profile: ${{ steps.publishprofile.outputs.profile }}
 
