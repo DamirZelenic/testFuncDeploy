@@ -7,13 +7,16 @@ on:
     branches: [ main ]
     paths:
       - 'dumyFunc/**'
+      - '.github/workflows/FuncDeploy.yml'
+
   pull_request:
     branches: [ main ]
     paths:
       - 'dumyFunc/**'
+      - '.github/workflows/FuncDeploy.yml'
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  # workflow_dispatch:
 
 env:
   FUNCTION_NAME: dumyFuncDZ    # This name needs to be globally unique
