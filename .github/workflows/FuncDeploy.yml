@@ -48,7 +48,7 @@ jobs:
       - name: Echo
         run: "echo '${{ github.ref }}'"
 
-      - name: Login via Az module for prod
+      - name: Login via Az module
         uses: azure/login@v1
         with:
           creds: ${{secrets.AZURE_CREDS}}
