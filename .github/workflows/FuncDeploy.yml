@@ -34,6 +34,15 @@ jobs:
             echo "::set-output name=environment_name::dev"
           fi
 
+  use-environment:
+    runs-on: ubuntu-latest
+    needs: [get-environment]
+    environment:
+      name: ${{ needs.get-environment.outputs.environment_name }}
+    steps:
+      - name: Echo
+        run: "echo '${{ needs.get-environment.outputs.environment_name }}'"
+
   buildProd:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
