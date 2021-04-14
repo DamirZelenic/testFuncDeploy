@@ -45,11 +45,11 @@ jobs:
 
       - uses: actions/checkout@v2
 
+      # Add "dev" suffix to function name, name must be globally unique
       - name: Set env
         if: ${{ github.ref != 'refs/heads/main' }}
         run: |
           echo "FUNCTION_NAME=${{ env.FUNCTION_NAME }}dev" >> $GITHUB_ENV
-
 
       - name: Show name
         run: echo $FUNCTION_NAME
