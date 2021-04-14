@@ -32,7 +32,7 @@ else
         New-AzResourceGroup -Name $FunctionResourceGroup -Location $Location
     }
     $StorageAccountName = "sa$FunctionName".ToLower()
-    if ($null -eq (Get-AzStorageAccount -Name $StorageAccountName -ResourceGroupName $FunctionResourceGroup))
+    if ($null -eq (Get-AzStorageAccount -Name $StorageAccountName -ResourceGroupName $FunctionResourceGroup -ErrorAction SilentlyContinue))
     {
         Write-Host "Storageaccount does not exist yet, creating"
         $SAParameters = @{
