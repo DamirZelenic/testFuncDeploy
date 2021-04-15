@@ -72,7 +72,6 @@ else
             StorageAccountName = $StorageAccountName
             Location           = $location
             Runtime            = "PowerShell"
-            IdentityType       = "SystemAssigned"
         }
     }
     else
@@ -83,7 +82,6 @@ else
             StorageAccountName = $StorageAccountName
             Location           = $location
             Runtime            = "PowerShell"
-            IdentityType       = "SystemAssigned"
             AppSetting        = $appSettings
         }
     }
