@@ -7,7 +7,9 @@ param(
     [parameter()]
     [string]$Location,
     [parameter()]
-    [string]$AppSettingsJSON
+    [string]$AppSettingsJSON,
+    [parameter()]
+    [string]$IdentityType
 )
 
 <#
@@ -86,7 +88,10 @@ else
         }
     }
     $Function = New-AzFunctionApp @FAParameters
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9119f35504d0fa31c243d82011152f6494300117
     Write-Host $Function
 
     Update-AzFunctionApp -Name $FunctionName -ResourceGroupName $FunctionResourceGroup -IdentityType $IdentityType
