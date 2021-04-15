@@ -113,3 +113,14 @@ jobs:
           appName: ${{ env.FUNCTION_NAME }}
           # Value indicating whether to reset the publish profile or not.
           reset: true
+
+       # Set RBAC for managed identity
+      - name: Azure PowerShell Action
+        uses: Azure/powershell@v1
+        if: ${{ env.IDENTITY_TYPE }} != 'None'
+        with:
+          # Specify the Az PowerShell script here.
+          inlineScript:
+            .\setRBAC.ps1 -FunctionName ${{ env.FUNCTION_NAME }} -FunctionResourceGroup ${{ env.RESOURCE_GROUP }}
+          # Azure PS version to be used to execute the script, example: 1.8.0, 2.8.0, 3.4.0. To use the latest version, specify "latest".
+          azPSVersion: latest
