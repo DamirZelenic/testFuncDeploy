@@ -38,7 +38,7 @@ else
     }
     catch
     {
-        Write-Host "error: $_"
+        Write-Host "$_"
     }
 
     if ($null -eq $sa)
@@ -86,4 +86,8 @@ else
         }
     }
     $Function = New-AzFunctionApp @FAParameters
+
+    Write-Host $Function
+
+    Update-AzFunctionApp -Name $FunctionName -ResourceGroupName $FunctionResourceGroup -IdentityType $IdentityType
 }
