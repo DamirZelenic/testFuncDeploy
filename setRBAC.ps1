@@ -6,6 +6,7 @@ param(
     [string]$FunctionResourceGroup
 )
 
+# Set RBAC for Managed Identities
 $identityId = (Get-AzFunctionApp -Name $FunctionName -ResourceGroupName $FunctionResourceGroup).IdentityPrincipalId
 
 switch ($FunctionName)
