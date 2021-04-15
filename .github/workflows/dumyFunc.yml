@@ -24,6 +24,7 @@ env:
   RESOURCE_GROUP: dumyFunc
   LOCATION: 'westeurope'
   APP_SETTING: '{"FIRST_SETTING":"value1","SECOND_SETTING":"value2"}'  # function app settings in json format
+  IDENTITY_TYPE: 'SystemAssigned' #allowed values are None, SystemAssigned, UserAssigned
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -73,7 +74,7 @@ jobs:
         with:
           # Specify the Az PowerShell script here.
           inlineScript:
-            .\deployFA.ps1 -FunctionName ${{ env.FUNCTION_NAME }} -FunctionResourceGroup ${{ env.RESOURCE_GROUP }} -Location ${{ env.LOCATION }} -AppSettingsJSON '${{ env.APP_SETTING }}'
+            .\deployFA.ps1 -FunctionName ${{ env.FUNCTION_NAME }} -FunctionResourceGroup ${{ env.RESOURCE_GROUP }} -Location ${{ env.LOCATION }} -AppSettingsJSON '${{ env.APP_SETTING }}' -IdentityType '${{ env.IDENTITY_TYPE }}'
           # Azure PS version to be used to execute the script, example: 1.8.0, 2.8.0, 3.4.0. To use the latest version, specify "latest".
           azPSVersion: latest
 
