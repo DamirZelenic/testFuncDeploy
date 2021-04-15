@@ -4,16 +4,16 @@ name: Test Function Deployment
 on:
   # Triggers the workflow on push or pull request events
   push:
-    # branches: [ main ]
+    branches: [ main ]
     paths:
       - 'dumyFunc/**'
-      #- '.github/workflows/dumyFunc.yml'
+      - '.github/workflows/dumyFunc.yml'
 
   pull_request:
-    # branches: [ main ]
+    branches: [ main ]
     paths:
       - 'dumyFunc/**'
-     # - '.github/workflows/dumyFunc.yml'
+      - '.github/workflows/dumyFunc.yml'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
