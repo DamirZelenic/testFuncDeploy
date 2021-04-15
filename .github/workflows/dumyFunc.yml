@@ -48,18 +48,18 @@ jobs:
     environment:
       name: ${{ needs.get-environment.outputs.environment_name }}
     steps:
-      - name: Echo
+      - name: Echo environment name
         run: "echo '${{ needs.get-environment.outputs.environment_name }}'"
 
       - uses: actions/checkout@v2
 
       # Add "dev" suffix to function name, name must be globally unique
-      - name: Set env
+      - name: Set function name for dev env
         if: ${{ github.ref != 'refs/heads/main' }}
         run: |
           echo "FUNCTION_NAME=${{ env.FUNCTION_NAME }}dev" >> $GITHUB_ENV
 
-      - name: Show name
+      - name: Show function name
         run: echo $FUNCTION_NAME
 
       - name: Login via Az module
@@ -69,7 +69,7 @@ jobs:
           enable-AzPSSession: true
 
       # Deploy the Function
-      - name: Azure PowerShell Action
+      - name: Deploy Function
         uses: Azure/powershell@v1
         with:
           # Specify the Az PowerShell script here.
@@ -115,7 +115,7 @@ jobs:
           reset: true
 
        # Set RBAC for managed identity
-      - name: Azure PowerShell Action
+      - name: Set RBAC
         uses: Azure/powershell@v1
         if: ${{ env.IDENTITY_TYPE }} != 'None'
         with:
