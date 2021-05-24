@@ -1,6 +1,6 @@
 name: Test Function Deployment
 
-# Controls when the action will run.
+# Controls when the action will run
 on:
   # Triggers the workflow on push or pull request events
   push:
