@@ -43,8 +43,8 @@ jobs:
           fi
 
   deploy-to-environment:
-    # runs-on: ubuntu-latest
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
+    # runs-on: self-hosted
     needs: [get-environment]
     environment:
       name: ${{ needs.get-environment.outputs.environment_name }}
