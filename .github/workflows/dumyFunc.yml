@@ -83,7 +83,7 @@ jobs:
       - name: Azure App Service Publish Profile
         uses: aliencube/publish-profile-actions@v1.2.0
         #env:
-          #AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDS }}
+          AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDS }}
         id: publishprofile
         with:
           # Resource group name.
