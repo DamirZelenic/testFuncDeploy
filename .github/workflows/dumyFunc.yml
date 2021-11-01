@@ -82,7 +82,7 @@ jobs:
       # Get the publish profile, added creds
       - name: Azure App Service Publish Profile
         uses: aliencube/publish-profile-actions@v1.2.0
-        #env:
+        env:
           AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDS }}
         id: publishprofile
         with:
